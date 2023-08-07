@@ -3,7 +3,7 @@ import concrete from "/concrete.avif"
 export default function () {
 	const geometry = new THREE.PlaneGeometry(2200, 2300);
 	const textureLoader = new THREE.TextureLoader();
-	const planeMaterial = new THREE.MeshBasicMaterial({
+	const planeMaterial = new THREE.MeshStandardMaterial({
 	    map: textureLoader.load(concrete),
 	    });
 	// const planeMaterial = new THREE.MeshBasicMaterial({

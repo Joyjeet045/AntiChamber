@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import ballF from "./three_world/Ball/ball.ts";
-import bricks from "/brick2.webp"
+import bricks from "/brick2.webp";
 import worldMaker from "./Physics/Physics.ts";
 import * as CANNON from "cannon-es";
 import groundF from "./three_world/Plane/Plane.ts";
@@ -36,8 +36,13 @@ camera.position.set(
 
 orbit.update();
 orbit.enabled = false;
-const ambientLight = new THREE.AmbientLight(0xffffff, 2000);
-scene.add(ambientLight);
+// const ambientLight = new THREE.AmbientLight(0xffffff, 2000);
+// scene.add(ambientLight);
+
+const pointLight = new THREE.PointLight(0xffffff, 500, 2000);
+ball.add(pointLight);
+// pointLight.position.set(0, 0, -100);
+// pointLight.target = ball;
 
 const groundMesh = groundF();
 scene.add(groundMesh);
@@ -59,9 +64,9 @@ CANNON_OBJS.walls.forEach((wall) => {
 	// const boxMaterial = new THREE.MeshBasicMaterial({
 	// 	color: 0x00ff00,
 	// });
-	const boxMaterial = new THREE.MeshBasicMaterial({
-		map: textureLoader.load(bricks)
-	})
+	const boxMaterial = new THREE.MeshStandardMaterial({
+		map: textureLoader.load(bricks),
+	});
 	const ballMesh = new THREE.Mesh(boxGeometry, boxMaterial);
 	ballMesh.position.copy(cast_CANNON_THREE_Vec3(wall.position));
 	scene.add(ballMesh);
@@ -75,17 +80,17 @@ groundMesh.quaternion.copy(
 
 const timeStep = 1 / 60;
 
-function updateCameraPos() {
-	// let velocity = CANNON_OBJS.PHY_BALL.velocity;
-	// camera.position.x = ball.position.x - 20 * velocity.x;
-	// camera.position.y = ball.position.y - 20 * velocity.y;
-	// camera.position.z = ball.position.z;
+// function updateCameraPos() {
+// 	// let velocity = CANNON_OBJS.PHY_BALL.velocity;
+// 	// camera.position.x = ball.position.x - 20 * velocity.x;
+// 	// camera.position.y = ball.position.y - 20 * velocity.y;
+// 	// camera.position.z = ball.position.z;
 
-	let scaler = 20 / velocity.length();
-	let r2x = CANNON_OBJS.PHY_BALL.position.x - scaler * velocity.x;
-	let r2y = CANNON_OBJS.PHY_BALL.position.y - scaler * velocity.y;
-	camera.position.set(r2x, r2y, ball.position.z);
-}
+// 	let scaler = 20 / velocity.length();
+// 	let r2x = CANNON_OBJS.PHY_BALL.position.x - scaler * velocity.x;
+// 	let r2y = CANNON_OBJS.PHY_BALL.position.y - scaler * velocity.y;
+// 	camera.position.set(r2x, r2y, ball.position.z);
+// }
 camera.position.set(20, 260, -5);
 
 function animate() {
