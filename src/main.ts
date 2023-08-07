@@ -80,17 +80,7 @@ groundMesh.quaternion.copy(
 
 const timeStep = 1 / 60;
 
-// function updateCameraPos() {
-// 	// let velocity = CANNON_OBJS.PHY_BALL.velocity;
-// 	// camera.position.x = ball.position.x - 20 * velocity.x;
-// 	// camera.position.y = ball.position.y - 20 * velocity.y;
-// 	// camera.position.z = ball.position.z;
 
-// 	let scaler = 20 / velocity.length();
-// 	let r2x = CANNON_OBJS.PHY_BALL.position.x - scaler * velocity.x;
-// 	let r2y = CANNON_OBJS.PHY_BALL.position.y - scaler * velocity.y;
-// 	camera.position.set(r2x, r2y, ball.position.z);
-// }
 camera.position.set(20, 260, -5);
 
 function animate() {
@@ -99,7 +89,7 @@ function animate() {
 	ball.quaternion.copy(
 		cast_CANNON_THREE_Qnion(CANNON_OBJS.PHY_BALL.quaternion)
 	);
-	// updateCameraPos();
+	
 	renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
