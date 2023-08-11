@@ -16,7 +16,7 @@ export default function (camera: THREE.PerspectiveCamera) {
 	const sphereBody = new CANNON.Body({
 		mass: 4,
 		shape: new CANNON.Sphere(4),
-		position: new CANNON.Vec3(20, 240, -10),
+		position: new CANNON.Vec3(60, 200, -10),
 	});
 	ball_controls(sphereBody, camera);
 	world.addBody(sphereBody);

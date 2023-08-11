@@ -5,15 +5,15 @@ import bricks from "/brick2.webp";
 import worldMaker from "./Physics/Physics.ts";
 import * as CANNON from "cannon-es";
 import groundF from "./three_world/Plane/Plane.ts";
+// import stars from "/stars.jpeg";
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 export const scene = new THREE.Scene();
-const axesHelper = new THREE.AxesHelper(50);
-axesHelper.position.set(-20, 0, 0);
-scene.add(axesHelper);
+// scene.background = new THREE.TextureLoader().load(stars);
+
 const camera = new THREE.PerspectiveCamera(
 	75,
 	window.innerWidth / window.innerHeight,
@@ -81,7 +81,6 @@ groundMesh.quaternion.copy(
 const timeStep = 1 / 60;
 
 
-camera.position.set(20, 260, -5);
 
 function animate() {
 	world.step(timeStep);
